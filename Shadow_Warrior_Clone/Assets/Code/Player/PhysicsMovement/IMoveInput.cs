@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMoveInput
 {
-    void GetInput();
     float Vertical { get; }
     float Horizontal { get; }
+    void GetInput();
 }

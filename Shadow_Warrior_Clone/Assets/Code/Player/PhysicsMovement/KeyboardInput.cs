@@ -8,11 +8,9 @@ public class KeyboardInput : IMoveInput
 
     public float Horizontal { get; private set; }
 
-
     public void GetInput()
     {
         Vertical = Input.GetAxis("Vertical");
         Horizontal = Input.GetAxis("Horizontal");
     }
-
 }

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97680d2f6e8f01041bc9af5532ffa644, type: 3}
-  m_Name: Player_MoveSetting
+  m_Script: {fileID: 11500000, guid: 6acdfd71481f97249841571364dcc148, type: 3}
+  m_Name: BasicMovement
   m_EditorClassIdentifier: 
-  turnSpeed: 25
+  turnSpeed: 10
   moveSpeed: 10
-  useTransformToMove: 0
