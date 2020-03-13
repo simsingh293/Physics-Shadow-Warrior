@@ -7,7 +7,8 @@ public class ProjectileMovement : MonoBehaviour
     public float predictionStepsPerFrame = 6;
     //public float bulletSpeed = 3;
     public Vector3 bulletVelocity = Vector3.zero;
-    public Transform firePoint = null;
+
+    public GameObject ImpactVFX = null;
 
     Coroutine currentCo = null;
 
@@ -18,7 +19,16 @@ public class ProjectileMovement : MonoBehaviour
     public void SetVelocity(float _bulletSpeed, Vector3 _forward)
     {
         bulletVelocity = _forward * _bulletSpeed;
+
+
+
         currentCo = StartCoroutine(ActiveBullet());
+
+        //if (MuzzleFlashVFX != null)
+        //{
+        //    var muzzleVFX = Instantiate(MuzzleFlashVFX, transform.position, Quaternion.identity);
+        //    muzzleVFX.transform.forward = gameObject.transform.forward;
+        //}
     }
 
     void BulletMovement()
@@ -77,5 +87,24 @@ public class ProjectileMovement : MonoBehaviour
         StopCoroutine(currentCo);
         currentCo = null;
         gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        StopAllCoroutines();
+        currentCo = null;
+        bulletVelocity = Vector3.zero;
+
+
+
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 position = contact.point;
+
+        //if (ImpactVFX != null)
+        //{
+        //    var hitVFX = Instantiate(ImpactVFX, position, rotation);
+        //    StartCoroutine(DeactivateBullet());
+        //}
     }
 }

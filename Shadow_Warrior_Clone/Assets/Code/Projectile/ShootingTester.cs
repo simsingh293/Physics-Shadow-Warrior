@@ -5,7 +5,9 @@ using UnityEngine;
 public class ShootingTester : MonoBehaviour
 {
     ObjectPooler pooler;
+    VFXPooler FXpooler;
     public Transform muzzle;
+    public GameObject muzzleFlash = null;
     public float bulletSpeed = 0;
 
     private GameObject testBulletObj = null;
@@ -14,6 +16,7 @@ public class ShootingTester : MonoBehaviour
     void Start()
     {
         pooler = ObjectPooler.instance;
+        FXpooler = VFXPooler.Instance;
     }
 
     void Update()
@@ -22,7 +25,9 @@ public class ShootingTester : MonoBehaviour
         {
             testBulletObj = pooler.SpawnFromPool("Bullet01", muzzle.position, muzzle.rotation);
 
-            if(testBulletObj.TryGetComponent(out ProjectileMovement projectile))
+            
+
+            if (testBulletObj.TryGetComponent(out ProjectileMovement projectile))
             {
                 testProjectile = projectile;
 
