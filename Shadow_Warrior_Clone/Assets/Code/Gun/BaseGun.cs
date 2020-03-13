@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseGun : MonoBehaviour
 {
     public float fireRate = 2;
-    public MuzzleFlash muzzleFlash = null;
+    public ParticleReset muzzleFlash = null;
     public Transform firePoint = null;
     public float VelocityMultiplier = 10;
 
@@ -18,7 +18,7 @@ public class BaseGun : MonoBehaviour
 
     private void Awake()
     {
-        muzzleFlash = GetComponentInChildren<MuzzleFlash>();
+        muzzleFlash = GetComponentInChildren<ParticleReset>();
         pooler = ObjectPooler.instance;
     }
 
@@ -38,12 +38,12 @@ public class BaseGun : MonoBehaviour
         {
             test = pooler.SpawnFromPool("Bullet", firePoint.position, firePoint.rotation);
 
-            if(test.TryGetComponent(out BaseProjectile proj))
+            if(test != null &&  test.TryGetComponent(out BulletMotor bullet))
             {
-                proj.SetVelocity = predictedVelocity;
+                bullet.Speed = VelocityMultiplier;
+                muzzleFlash.ShootParticles();
             }
 
-            muzzleFlash.ShootParticles();
         }
     }
 

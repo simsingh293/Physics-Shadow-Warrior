@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class MuzzleFlash : MonoBehaviour
+public class ParticleReset : MonoBehaviour
 {
     public List<ParticleSystem> particles = new List<ParticleSystem>();
 
